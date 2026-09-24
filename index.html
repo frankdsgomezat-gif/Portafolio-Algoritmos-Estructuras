@@ -5,90 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portafolio | Algoritmos y Estructuras de Datos</title>
 <link rel="stylesheet" href="css/estilos.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <div class="particles"></div>
 <header class="hero">
-  <nav>
-    <div class="brand">⌬ SISTEMAS • PORTAFOLIO</div>
-    <a href="#unidades">Unidades</a>
-    <a href="#perfil">Perfil</a>
-  </nav>
-  <div class="hero-content">
-    <div class="logo-box">
-      <img src="img/logo.png" alt="Logo de la Universidad" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-      <span>LOGO UPLA</span>
-    </div>
-    <p class="tag">INGENIERÍA DE SISTEMAS Y COMPUTACIÓN</p>
-    <h1>Portafolio<br><span>Algoritmos y Estructuras de Datos</span></h1>
-    <p class="university">Universidad Peruana Los Andes</p>
-    <a class="btn" href="#unidades">Explorar portafolio ↓</a>
-  </div>
+<nav><div class="brand">⌬ SISTEMAS • PORTAFOLIO</div><a href="#unidades">Unidades</a><a href="#perfil">Perfil</a><button id="btnLogin" class="nav-login">Administrador</button></nav>
+<div class="hero-content"><div class="logo-box"><img src="img/logo.png" alt="Logo de la Universidad"><span>LOGO UPLA</span></div>
+<p class="tag">INGENIERÍA DE SISTEMAS Y COMPUTACIÓN</p><h1>Portafolio<br><span>Algoritmos y Estructuras de Datos</span></h1>
+<p class="university">Universidad Peruana Los Andes</p><a class="btn" href="#unidades">Explorar portafolio ↓</a></div>
 </header>
+<section id="perfil" class="profile section"><div class="photo-box"><img src="img/foto.jpeg" alt="Foto de Jhon Franklin"><span>📷<br>Tu foto aquí</span></div>
+<div><p class="tag">ESTUDIANTE</p><h2>Gomez Dorote Jhon Franklin</h2><p>Portafolio académico para organizar proyectos, prácticas, documentos, evidencias e imágenes del curso.</p>
+<div class="chips"><span>Java</span><span>Algoritmos</span><span>Estructuras de Datos</span><span>GitHub</span></div></div></section>
+<section id="unidades" class="section"><div class="section-title"><p class="tag">CONTENIDO ACADÉMICO</p><h2>Unidades del curso</h2><p>Las unidades, semanas y archivos se administran desde esta misma página.</p></div>
+<div id="adminBar" class="admin-bar hidden"><strong>Modo administrador</strong><button id="btnAddUnit" class="admin-btn">+ Agregar unidad</button><button id="btnLogout" class="admin-btn secondary">Cerrar sesión</button></div>
+<div id="unitsContainer" class="units"><div class="loading">Cargando contenido...</div></div></section>
+<footer><strong>Portafolio Algoritmos y Estructuras de Datos</strong><span>Universidad Peruana Los Andes • Gomez Dorote Jhon Franklin</span></footer>
 
-<section id="perfil" class="profile section">
-  <div class="photo-box">
-    <img src="img/foto.jpeg" alt="Foto de Jhon Franklin" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-    <span>📷<br>Tu foto aquí</span>
-  </div>
-  <div>
-    <p class="tag">ESTUDIANTE</p>
-    <h2>Gomez Dorote Jhon Franklin</h2>
-    <p>Portafolio académico para organizar proyectos, prácticas, documentos, evidencias e imágenes del curso.</p>
-    <div class="chips"><span>Java</span><span>Algoritmos</span><span>Estructuras de Datos</span><span>GitHub</span></div>
-  </div>
-</section>
+<div id="loginModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="loginModal">×</button><p class="tag">ACCESO</p><h2>Administrador</h2><p class="modal-help">Ingresa con el usuario que creaste en Supabase.</p>
+<form id="loginForm"><label>Correo</label><input id="loginEmail" type="email" required><label>Contraseña</label><input id="loginPassword" type="password" required><button class="btn form-btn">Iniciar sesión</button><p id="loginMessage" class="form-message"></p></form></div></div>
 
-<section id="unidades" class="section">
-  <div class="section-title">
-    <p class="tag">CONTENIDO ACADÉMICO</p>
-    <h2>Unidades del curso</h2>
-    <p>Puedes duplicar una tarjeta para crear nuevas unidades y semanas.</p>
-  </div>
+<div id="unitModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="unitModal">×</button><p class="tag">UNIDAD</p><h2 id="unitModalTitle">Nueva unidad</h2>
+<form id="unitForm"><input id="unitId" type="hidden"><label>Nombre de la unidad</label><input id="unitName" required placeholder="Ej. Unidad I - Fundamentos"><label>Descripción</label><input id="unitDescription" placeholder="Ej. Fundamentos y algoritmos"><button class="btn form-btn">Guardar unidad</button><p id="unitMessage" class="form-message"></p></form></div></div>
 
-  <div class="units">
-    <article class="unit">
-      <div class="unit-number">01</div><h3>Unidad I</h3><p>Fundamentos y algoritmos</p>
-      <div class="weeks">
-        <a href="unidades/unidad-1/semana-1/">Semana 01</a>
-        <a href="unidades/unidad-1/semana-2/">Semana 02</a>
-        <a href="unidades/unidad-1/semana-3/">Semana 03</a>
-        <a href="unidades/unidad-1/semana-4/">Semana 04</a>
-      </div>
-    </article>
-    <article class="unit">
-      <div class="unit-number">02</div><h3>Unidad II</h3><p>Estructuras lineales</p>
-      <div class="weeks">
-        <a href="unidades/unidad-2/semana-5/">Semana 05</a>
-        <a href="unidades/unidad-2/semana-6/">Semana 06</a>
-        <a href="unidades/unidad-2/semana-7/">Semana 07</a>
-        <a href="unidades/unidad-2/semana-8/">Semana 08</a>
-      </div>
-    </article>
-    <article class="unit">
-      <div class="unit-number">03</div><h3>Unidad III</h3><p>Estructuras no lineales</p>
-      <div class="weeks">
-        <a href="unidades/unidad-3/semana-9/">Semana 09</a>
-        <a href="unidades/unidad-3/semana-10/">Semana 10</a>
-        <a href="unidades/unidad-3/semana-11/">Semana 11</a>
-        <a href="unidades/unidad-3/semana-12/">Semana 12</a>
-      </div>
-    </article>
-    <article class="unit">
-      <div class="unit-number">04</div><h3>Unidad IV</h3><p>Proyecto y aplicación</p>
-      <div class="weeks">
-        <a href="unidades/unidad-4/semana-13/">Semana 13</a>
-        <a href="unidades/unidad-4/semana-14/">Semana 14</a>
-        <a href="unidades/unidad-4/semana-15/">Semana 15</a>
-        <a href="unidades/unidad-4/semana-16/">Semana 16</a>
-      </div>
-    </article>
-  </div>
-</section>
+<div id="weekModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="weekModal">×</button><p class="tag">SEMANA</p><h2 id="weekModalTitle">Nueva semana</h2>
+<form id="weekForm"><input id="weekId" type="hidden"><input id="weekUnitId" type="hidden"><label>Nombre de la semana</label><input id="weekName" required placeholder="Ej. Semana 01 - Introducción"><button class="btn form-btn">Guardar semana</button><p id="weekMessage" class="form-message"></p></form></div></div>
 
-<footer>
-  <strong>Portafolio Algoritmos y Estructuras de Datos</strong>
-  <span>Universidad Peruana Los Andes • Gomez Dorote Jhon Franklin</span>
-</footer>
-</body>
-</html>
+<script src="js/app.js"></script>
+</body></html>
